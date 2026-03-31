@@ -201,7 +201,7 @@ function getBoard(params, userId) {
     return u ? {
       userId: m.user_id,
       name: u.name,
-      username: findRow("Users", "id", m.user_id)?.username || "",
+      username: (function() { var u2 = findRow("Users", "id", m.user_id); return u2 ? u2.username : ""; }()),
       avatarColor: u.avatarColor,
       role: m.role
     } : null;

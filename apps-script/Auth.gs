@@ -78,7 +78,7 @@ function createInitialAdmin() {
     name: "Administrator",
     avatar_color: "#6366f1",
     role_global: "owner",
-    is_active: true,
+    is_active: "true",
     created_at: now()
   });
   Logger.log("Admin created: admin / admin123");
@@ -101,7 +101,7 @@ function createUser(username, password, name, role) {
     name: name,
     avatar_color: color,
     role_global: role,
-    is_active: true,
+    is_active: "true",
     created_at: now()
   });
   Logger.log("User created: " + username);

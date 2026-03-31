@@ -37,7 +37,11 @@ function findRow(sheetName, fieldName, value) {
 
 function appendRow(sheetName, obj) {
   var sheet = getSheet(sheetName);
-  var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  var lastCol = sheet.getLastColumn();
+  if (lastCol === 0) {
+    throw new Error("Sheet '" + sheetName + "' has no columns. Run setupSpreadsheet() first, then SpreadsheetApp.flush() before writing data.");
+  }
+  var headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
   var row = headers.map(function(h) { return obj[h] !== undefined ? obj[h] : ""; });
   sheet.appendRow(row);
 }
